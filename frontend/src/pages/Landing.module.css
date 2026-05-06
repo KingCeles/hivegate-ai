@@ -364,12 +364,22 @@
 }
 
 .featureProgress span {
+  animation: featureTourProgress 4.2s linear forwards;
   background: var(--amber);
   display: block;
   height: 100%;
   transform-origin: left center;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
+}
+
+@keyframes featureTourProgress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .footerBand {

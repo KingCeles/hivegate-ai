@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hivegate-ai-v1'
+const CACHE_NAME = 'hivegate-ai-v2'
 const APP_SHELL = ['/', '/manifest.webmanifest', '/hivegate-mark.svg']
 
 self.addEventListener('install', event => {
@@ -37,14 +37,14 @@ self.addEventListener('fetch', event => {
   }
 
   event.respondWith(
-    caches.match(request).then(cached => (
-      cached || fetch(request).then(response => {
+    fetch(request)
+      .then(response => {
         if (request.method === 'GET' && response.ok) {
           const copy = response.clone()
           caches.open(CACHE_NAME).then(cache => cache.put(request, copy))
         }
         return response
       })
-    ))
+      .catch(() => caches.match(request))
   )
 })

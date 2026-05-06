@@ -32,23 +32,34 @@ function Chevron({ direction }) {
 
 export default function Landing() {
   const featureRail = useRef(null)
+  const programmaticScroll = useRef(false)
+  const scrollReleaseTimer = useRef(null)
   const [activeFeature, setActiveFeature] = useState(0)
-  const [isTourPaused, setIsTourPaused] = useState(false)
 
   function scrollFeatures(direction) {
     const next = (activeFeature + direction + features.length) % features.length
-    jumpToFeature(next)
+    setActiveFeature(next)
   }
 
-  function jumpToFeature(index) {
+  function scrollToFeature(index, behavior = 'smooth') {
     if (!featureRail.current) return
     const card = featureRail.current.children[index]
     if (!card) return
+    const left = card.offsetLeft - featureRail.current.offsetLeft
+    programmaticScroll.current = true
+    window.clearTimeout(scrollReleaseTimer.current)
+    featureRail.current.scrollTo({ left, behavior })
+    scrollReleaseTimer.current = window.setTimeout(() => {
+      programmaticScroll.current = false
+    }, 720)
+  }
+
+  function jumpToFeature(index) {
     setActiveFeature(index)
-    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
   }
 
   function syncActiveFeature() {
+    if (programmaticScroll.current) return
     if (!featureRail.current) return
     const cardWidth = featureRail.current.firstElementChild?.clientWidth || 1
     const next = Math.round(featureRail.current.scrollLeft / (cardWidth + 16))
@@ -56,12 +67,18 @@ export default function Landing() {
   }
 
   useEffect(() => {
-    if (isTourPaused) return undefined
-    const timer = window.setTimeout(() => {
-      jumpToFeature((activeFeature + 1) % features.length)
+    scrollToFeature(activeFeature)
+  }, [activeFeature])
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveFeature(current => (current + 1) % features.length)
     }, AUTO_ADVANCE_MS)
-    return () => window.clearTimeout(timer)
-  }, [activeFeature, isTourPaused])
+    return () => {
+      window.clearInterval(timer)
+      window.clearTimeout(scrollReleaseTimer.current)
+    }
+  }, [])
 
   if (localStorage.getItem('token')) {
     return <Navigate to="/dashboard" replace />
@@ -130,10 +147,6 @@ export default function Landing() {
           ref={featureRail}
           className={s.carouselViewport}
           onScroll={syncActiveFeature}
-          onMouseEnter={() => setIsTourPaused(true)}
-          onMouseLeave={() => setIsTourPaused(false)}
-          onFocus={() => setIsTourPaused(true)}
-          onBlur={() => setIsTourPaused(false)}
           aria-label="HiveGate AI features"
         >
           {features.map(([title, label, text], index) => (
@@ -163,7 +176,7 @@ export default function Landing() {
           ))}
         </div>
         <div className={s.featureProgress} aria-hidden="true">
-          <span style={{ transform: `scaleX(${(activeFeature + 1) / features.length})` }} />
+          <span key={activeFeature} />
         </div>
       </section>
 
