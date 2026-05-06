@@ -349,11 +349,6 @@
   width: 8px;
 }
 
-.featureDots .dotActive {
-  background: var(--amber);
-  width: 26px;
-}
-
 .featureProgress {
   background: color-mix(in srgb, var(--border) 76%, transparent);
   border-radius: 999px;
