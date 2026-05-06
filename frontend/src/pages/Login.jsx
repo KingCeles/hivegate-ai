@@ -54,6 +54,7 @@ export default function Login() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
+          <Link to="/" className={s.mainMenuLink}>Main menu</Link>
           <div className={s.logoWrap}>
             <div className={s.hex}>
               <BrandMark className={s.logoImgAuth} />
@@ -69,12 +70,12 @@ export default function Login() {
             </div>
             <div className={s.field}>
               <label>Password</label>
-              <input type="password" placeholder="••••••••"
+              <input type="password" placeholder="8+ characters"
                 value={form.password} onChange={e=>setForm({...form,password:e.target.value})} required />
             </div>
             {error && <div className={s.error}>{error}</div>}
             <button className={s.btn} disabled={loading}>
-              {loading ? 'Authenticating…' : 'Sign in'}
+              {loading ? 'Authenticating...' : 'Sign in'}
             </button>
           </form>
           <p className={s.footer}>No account? <Link to="/register">Create one here</Link></p>

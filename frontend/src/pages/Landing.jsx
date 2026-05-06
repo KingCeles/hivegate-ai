@@ -4,14 +4,14 @@ import BrandMark from '../components/BrandMark'
 import s from './Landing.module.css'
 
 const features = [
-  ['Identify Bee', 'Species check', 'Upload a bee photo and get model-assisted identification.'],
-  ['Count Video', 'Traffic count', 'Upload entrance video and track bees moving in and out.'],
-  ['Live Camera', 'Phone uplink', 'Use a phone camera for live entrance monitoring.'],
-  ['Dashboard Trends', 'Saved data', 'Review daily, monthly, and yearly hive activity.'],
-  ['Farmer Reports', 'Evidence export', 'Turn saved sessions into report-ready summaries.'],
-  ['AI Helper', 'Project assistant', 'Ask questions based on your recent counts and workflow.'],
-  ['Owner View', 'Admin tools', 'Check users, backend health, models, and platform activity.'],
-  ['Email Alerts', 'Next phase', 'Use account email for simple activity notifications first.'],
+  ['Identify Bee', 'Species check', 'Upload a bee image and identify stingless bee species with the AI model.'],
+  ['Count Video', 'Traffic count', 'Upload a hive entrance video and count bees moving in and out.'],
+  ['Live Camera', 'Phone uplink', 'Use a phone camera for live entrance monitoring and dashboard sync.'],
+  ['Dashboard Trends', 'Saved records', 'Track daily, monthly, and yearly hive movement after sessions are saved.'],
+  ['Farmer Reports', 'Evidence export', 'Generate simple reports from saved counts for presentation and review.'],
+  ['AI Helper', 'Project assistant', 'Ask questions about your recent counts, reports, and field workflow.'],
+  ['Hardware View', 'Node status', 'Review phone nodes, camera status, and field hardware readiness.'],
+  ['Owner View', 'Admin tools', 'Check users, backend health, model status, and platform activity.'],
 ]
 
 const metrics = [
@@ -64,8 +64,8 @@ export default function Landing() {
 
       <section className={s.hero}>
         <div className={s.heroCopy}>
-          <h1>Monitor bee activity from video and live camera.</h1>
-          <p>Identify bees, count entrance traffic, save evidence, and review hive trends in one web app.</p>
+          <h1>Bee activity tracking, simplified.</h1>
+          <p>Identify bees, count traffic, monitor live camera sessions, and save reports in one web app.</p>
           <div className={s.heroActions}>
             <Link to="/register" className={s.primaryBtn}>Start monitoring</Link>
             <Link to="/login" className={s.secondaryBtn}>Open workspace</Link>
@@ -95,8 +95,9 @@ export default function Landing() {
       <section className={s.workflow}>
         <div className={s.featureIntro}>
           <div>
-            <span>Feature tour</span>
-            <h2>Everything in HiveGate AI</h2>
+            <span>Slide feature tour</span>
+            <h2>What users can do</h2>
+            <p>Use the arrows, dots, or horizontal scroll to move through every main feature.</p>
           </div>
           <div className={s.carouselControls} aria-label="Feature carousel controls">
             <button type="button" onClick={() => scrollFeatures(-1)} aria-label="Previous feature">{'<'}</button>

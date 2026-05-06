@@ -229,6 +229,15 @@
   margin-top: 7px;
 }
 
+.featureIntro p {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.55;
+  margin-top: 7px;
+  max-width: 520px;
+}
+
 .carouselControls {
   display: flex;
   gap: 8px;
