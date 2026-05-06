@@ -102,7 +102,6 @@ export default function Landing() {
           <h1>Bee activity tracking, simplified.</h1>
           <p>Identify bees, count traffic, monitor live camera sessions, and save reports in one web app.</p>
           <div className={s.heroActions}>
-            <Link to="/register" className={s.primaryBtn}>Start monitoring</Link>
             <Link to="/login" className={s.secondaryBtn}>Open workspace</Link>
           </div>
         </div>

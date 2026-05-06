@@ -59,8 +59,8 @@
 }
 
 .primaryBtn {
-  background: var(--amber);
-  color: #111;
+  background: var(--text);
+  color: var(--bg);
 }
 
 .secondaryBtn {
