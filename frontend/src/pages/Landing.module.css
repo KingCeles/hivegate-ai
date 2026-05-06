@@ -259,6 +259,19 @@
   width: 40px;
 }
 
+.carouselControls svg {
+  height: 18px;
+  width: 18px;
+}
+
+.carouselControls path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+}
+
 .carouselControls button:hover {
   border-color: var(--amber);
 }
@@ -270,6 +283,7 @@
   grid-auto-flow: column;
   overflow-x: auto;
   padding: 2px 2px 12px;
+  scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
 }
@@ -281,6 +295,13 @@
   min-height: 190px;
   padding: 18px;
   scroll-snap-align: start;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.featureActive {
+  border-color: color-mix(in srgb, var(--amber) 56%, var(--border));
+  box-shadow: 0 18px 46px rgba(17, 19, 15, 0.12);
+  transform: translateY(-3px);
 }
 
 .cardMeta {
@@ -331,6 +352,24 @@
 .featureDots .dotActive {
   background: var(--amber);
   width: 26px;
+}
+
+.featureProgress {
+  background: color-mix(in srgb, var(--border) 76%, transparent);
+  border-radius: 999px;
+  height: 3px;
+  margin: 14px auto 0;
+  max-width: 260px;
+  overflow: hidden;
+}
+
+.featureProgress span {
+  background: var(--amber);
+  display: block;
+  height: 100%;
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
 }
 
 .footerBand {

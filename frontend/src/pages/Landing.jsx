@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import BrandMark from '../components/BrandMark'
 import s from './Landing.module.css'
@@ -20,18 +20,24 @@ const metrics = [
   ['Alerts', 'Email first, Telegram later'],
 ]
 
+const AUTO_ADVANCE_MS = 4200
+
+function Chevron({ direction }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+      <path d={direction === 'next' ? 'M9 5l7 7-7 7' : 'M15 5l-7 7 7 7'} />
+    </svg>
+  )
+}
+
 export default function Landing() {
   const featureRail = useRef(null)
   const [activeFeature, setActiveFeature] = useState(0)
-
-  if (localStorage.getItem('token')) {
-    return <Navigate to="/dashboard" replace />
-  }
+  const [isTourPaused, setIsTourPaused] = useState(false)
 
   function scrollFeatures(direction) {
-    if (!featureRail.current) return
-    const width = featureRail.current.clientWidth
-    featureRail.current.scrollBy({ left: direction * width * 0.86, behavior: 'smooth' })
+    const next = (activeFeature + direction + features.length) % features.length
+    jumpToFeature(next)
   }
 
   function jumpToFeature(index) {
@@ -47,6 +53,18 @@ export default function Landing() {
     const cardWidth = featureRail.current.firstElementChild?.clientWidth || 1
     const next = Math.round(featureRail.current.scrollLeft / (cardWidth + 16))
     setActiveFeature(Math.min(features.length - 1, Math.max(0, next)))
+  }
+
+  useEffect(() => {
+    if (isTourPaused) return undefined
+    const timer = window.setTimeout(() => {
+      jumpToFeature((activeFeature + 1) % features.length)
+    }, AUTO_ADVANCE_MS)
+    return () => window.clearTimeout(timer)
+  }, [activeFeature, isTourPaused])
+
+  if (localStorage.getItem('token')) {
+    return <Navigate to="/dashboard" replace />
   }
 
   return (
@@ -97,21 +115,33 @@ export default function Landing() {
           <div>
             <span>Slide feature tour</span>
             <h2>What users can do</h2>
-            <p>Use the arrows, dots, or horizontal scroll to move through every main feature.</p>
+            <p>Core tools for field counting, live monitoring, reporting, and owner review.</p>
           </div>
           <div className={s.carouselControls} aria-label="Feature carousel controls">
-            <button type="button" onClick={() => scrollFeatures(-1)} aria-label="Previous feature">{'<'}</button>
-            <button type="button" onClick={() => scrollFeatures(1)} aria-label="Next feature">{'>'}</button>
+            <button type="button" onClick={() => scrollFeatures(-1)} aria-label="Previous feature">
+              <Chevron direction="previous" />
+            </button>
+            <button type="button" onClick={() => scrollFeatures(1)} aria-label="Next feature">
+              <Chevron direction="next" />
+            </button>
           </div>
         </div>
         <div
           ref={featureRail}
           className={s.carouselViewport}
           onScroll={syncActiveFeature}
+          onMouseEnter={() => setIsTourPaused(true)}
+          onMouseLeave={() => setIsTourPaused(false)}
+          onFocus={() => setIsTourPaused(true)}
+          onBlur={() => setIsTourPaused(false)}
           aria-label="HiveGate AI features"
         >
           {features.map(([title, label, text], index) => (
-            <article key={title} className={s.featureCard}>
+            <article
+              key={title}
+              className={`${s.featureCard} ${index === activeFeature ? s.featureActive : ''}`}
+              aria-current={index === activeFeature ? 'true' : undefined}
+            >
               <div className={s.cardMeta}>
                 <span>{label}</span>
                 <strong>{String(index + 1).padStart(2, '0')}</strong>
@@ -131,6 +161,9 @@ export default function Landing() {
               aria-label={`Show ${title}`}
             />
           ))}
+        </div>
+        <div className={s.featureProgress} aria-hidden="true">
+          <span style={{ transform: `scaleX(${(activeFeature + 1) / features.length})` }} />
         </div>
       </section>
 
