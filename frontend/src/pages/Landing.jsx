@@ -54,10 +54,6 @@ export default function Landing() {
     }, 720)
   }
 
-  function jumpToFeature(index) {
-    setActiveFeature(index)
-  }
-
   function syncActiveFeature() {
     if (programmaticScroll.current) return
     if (!featureRail.current) return
@@ -162,20 +158,6 @@ export default function Landing() {
               <p>{text}</p>
             </article>
           ))}
-        </div>
-        <div className={s.featureDots} aria-label="Feature position">
-          {features.map(([title], index) => (
-            <button
-              key={title}
-              type="button"
-              className={index === activeFeature ? s.dotActive : ''}
-              onClick={() => jumpToFeature(index)}
-              aria-label={`Show ${title}`}
-            />
-          ))}
-        </div>
-        <div className={s.featureProgress} aria-hidden="true">
-          <span key={activeFeature} />
         </div>
       </section>
 

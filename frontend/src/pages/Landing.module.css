@@ -333,50 +333,6 @@
   margin-top: 9px;
 }
 
-.featureDots {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 8px;
-}
-
-.featureDots button {
-  background: var(--border);
-  border: 0;
-  border-radius: 999px;
-  cursor: pointer;
-  height: 8px;
-  width: 8px;
-}
-
-.featureProgress {
-  background: color-mix(in srgb, var(--border) 76%, transparent);
-  border-radius: 999px;
-  height: 3px;
-  margin: 14px auto 0;
-  max-width: 260px;
-  overflow: hidden;
-}
-
-.featureProgress span {
-  animation: featureTourProgress 4.2s linear forwards;
-  background: var(--amber);
-  display: block;
-  height: 100%;
-  transform-origin: left center;
-  width: 100%;
-}
-
-@keyframes featureTourProgress {
-  from {
-    transform: scaleX(0);
-  }
-
-  to {
-    transform: scaleX(1);
-  }
-}
-
 .footerBand {
   align-items: center;
   border-top: 1px solid var(--border);
