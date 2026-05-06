@@ -1,23 +1,52 @@
+import { useRef, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import BrandMark from '../components/BrandMark'
 import s from './Landing.module.css'
 
-const highlights = [
-  ['Identify Bee', 'Classify stingless bee photos with model-assisted species detection.'],
-  ['Count Video', 'Upload hive entrance videos and save IN/OUT traffic records.'],
-  ['Live Camera', 'Use a phone camera over HTTPS for live entrance monitoring.'],
-  ['Reports', 'Turn saved sessions into farmer-friendly summaries and evidence exports.'],
+const features = [
+  ['Identify Bee', 'Species check', 'Upload a bee photo and get model-assisted identification.'],
+  ['Count Video', 'Traffic count', 'Upload entrance video and track bees moving in and out.'],
+  ['Live Camera', 'Phone uplink', 'Use a phone camera for live entrance monitoring.'],
+  ['Dashboard Trends', 'Saved data', 'Review daily, monthly, and yearly hive activity.'],
+  ['Farmer Reports', 'Evidence export', 'Turn saved sessions into report-ready summaries.'],
+  ['AI Helper', 'Project assistant', 'Ask questions based on your recent counts and workflow.'],
+  ['Owner View', 'Admin tools', 'Check users, backend health, models, and platform activity.'],
+  ['Email Alerts', 'Next phase', 'Use account email for simple activity notifications first.'],
 ]
 
 const metrics = [
-  ['Saved data', 'Daily, monthly, yearly trends'],
-  ['AI helper', 'Answers from your recent counts'],
-  ['Owner view', 'Private backend and model health'],
+  ['Create account', 'Username, email, password'],
+  ['Default hive', 'No hive name required'],
+  ['Alerts', 'Email first, Telegram later'],
 ]
 
 export default function Landing() {
+  const featureRail = useRef(null)
+  const [activeFeature, setActiveFeature] = useState(0)
+
   if (localStorage.getItem('token')) {
     return <Navigate to="/dashboard" replace />
+  }
+
+  function scrollFeatures(direction) {
+    if (!featureRail.current) return
+    const width = featureRail.current.clientWidth
+    featureRail.current.scrollBy({ left: direction * width * 0.86, behavior: 'smooth' })
+  }
+
+  function jumpToFeature(index) {
+    if (!featureRail.current) return
+    const card = featureRail.current.children[index]
+    if (!card) return
+    setActiveFeature(index)
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+  }
+
+  function syncActiveFeature() {
+    if (!featureRail.current) return
+    const cardWidth = featureRail.current.firstElementChild?.clientWidth || 1
+    const next = Math.round(featureRail.current.scrollLeft / (cardWidth + 16))
+    setActiveFeature(Math.min(features.length - 1, Math.max(0, next)))
   }
 
   return (
@@ -35,11 +64,8 @@ export default function Landing() {
 
       <section className={s.hero}>
         <div className={s.heroCopy}>
-          <h1>Bee monitoring for field videos, phone cameras, and saved hive reports.</h1>
-          <p>
-            HiveGate AI helps beekeepers identify stingless bees, count entrance traffic,
-            save evidence, and review trends from one installable web app.
-          </p>
+          <h1>Monitor bee activity from video and live camera.</h1>
+          <p>Identify bees, count entrance traffic, save evidence, and review hive trends in one web app.</p>
           <div className={s.heroActions}>
             <Link to="/register" className={s.primaryBtn}>Start monitoring</Link>
             <Link to="/login" className={s.secondaryBtn}>Open workspace</Link>
@@ -67,18 +93,50 @@ export default function Landing() {
       </section>
 
       <section className={s.workflow}>
-        {highlights.map(([title, text]) => (
-          <article key={title} className={s.workflowItem}>
-            <h2>{title}</h2>
-            <p>{text}</p>
-          </article>
-        ))}
+        <div className={s.featureIntro}>
+          <div>
+            <span>Feature tour</span>
+            <h2>Everything in HiveGate AI</h2>
+          </div>
+          <div className={s.carouselControls} aria-label="Feature carousel controls">
+            <button type="button" onClick={() => scrollFeatures(-1)} aria-label="Previous feature">{'<'}</button>
+            <button type="button" onClick={() => scrollFeatures(1)} aria-label="Next feature">{'>'}</button>
+          </div>
+        </div>
+        <div
+          ref={featureRail}
+          className={s.carouselViewport}
+          onScroll={syncActiveFeature}
+          aria-label="HiveGate AI features"
+        >
+          {features.map(([title, label, text], index) => (
+            <article key={title} className={s.featureCard}>
+              <div className={s.cardMeta}>
+                <span>{label}</span>
+                <strong>{String(index + 1).padStart(2, '0')}</strong>
+              </div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+        <div className={s.featureDots} aria-label="Feature position">
+          {features.map(([title], index) => (
+            <button
+              key={title}
+              type="button"
+              className={index === activeFeature ? s.dotActive : ''}
+              onClick={() => jumpToFeature(index)}
+              aria-label={`Show ${title}`}
+            />
+          ))}
+        </div>
       </section>
 
       <section className={s.footerBand}>
         <div>
-          <h2>Built for a practical FYP workflow.</h2>
-          <p>Run a phone trial, save the session, compare manual truth counts, and export report evidence.</p>
+          <h2>Simple start, useful data.</h2>
+          <p>Create an account, run a trial, save the session, and export evidence for your report.</p>
         </div>
         <div className={s.metricList}>
           {metrics.map(([label, value]) => (

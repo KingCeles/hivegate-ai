@@ -73,27 +73,27 @@
   display: grid;
   gap: clamp(32px, 6vw, 76px);
   grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.78fr);
-  margin: 58px auto 0;
+  margin: 48px auto 0;
   max-width: 1180px;
-  min-height: calc(100vh - 180px);
+  min-height: min(620px, calc(100vh - 150px));
 }
 
 .heroCopy h1 {
   color: var(--text);
-  font-size: clamp(42px, 6vw, 74px);
+  font-size: clamp(40px, 5.4vw, 68px);
   font-weight: 950;
   letter-spacing: 0;
-  line-height: 1.02;
-  max-width: 880px;
+  line-height: 1.03;
+  max-width: 760px;
 }
 
 .heroCopy p {
   color: var(--muted);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 650;
-  line-height: 1.72;
-  margin: 24px 0 28px;
-  max-width: 680px;
+  line-height: 1.65;
+  margin: 20px 0 28px;
+  max-width: 620px;
 }
 
 .productPreview {
@@ -188,7 +188,9 @@
 }
 
 .previewStats span,
-.metricList span {
+.metricList span,
+.featureIntro span,
+.cardMeta span {
   color: var(--muted);
   display: block;
   font-size: 11px;
@@ -206,33 +208,119 @@
 }
 
 .workflow {
-  display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 34px auto 0;
   max-width: 1180px;
 }
 
-.workflowItem {
-  border-top: 1px solid var(--border);
-  padding-top: 20px;
+.featureIntro {
+  align-items: flex-end;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  margin-bottom: 16px;
 }
 
-.workflowItem h2,
+.featureIntro h2,
 .footerBand h2 {
   color: var(--text);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
   line-height: 1.24;
+  margin-top: 7px;
 }
 
-.workflowItem p,
+.carouselControls {
+  display: flex;
+  gap: 8px;
+}
+
+.carouselControls button {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 18px;
+  font-weight: 900;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.carouselControls button:hover {
+  border-color: var(--amber);
+}
+
+.carouselViewport {
+  display: grid;
+  gap: 16px;
+  grid-auto-columns: minmax(260px, 32%);
+  grid-auto-flow: column;
+  overflow-x: auto;
+  padding: 2px 2px 12px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.featureCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-height: 190px;
+  padding: 18px;
+  scroll-snap-align: start;
+}
+
+.cardMeta {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardMeta strong {
+  color: color-mix(in srgb, var(--amber) 82%, var(--text));
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.featureCard h3 {
+  color: var(--text);
+  font-size: 21px;
+  font-weight: 920;
+  line-height: 1.2;
+  margin-top: 44px;
+}
+
+.featureCard p,
 .footerBand p {
   color: var(--muted);
   font-size: 14px;
   font-weight: 650;
-  line-height: 1.65;
+  line-height: 1.62;
+  margin-top: 9px;
+}
+
+.featureDots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
   margin-top: 8px;
+}
+
+.featureDots button {
+  background: var(--border);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  height: 8px;
+  width: 8px;
+}
+
+.featureDots .dotActive {
+  background: var(--amber);
+  width: 26px;
 }
 
 .footerBand {
@@ -241,7 +329,7 @@
   display: grid;
   gap: 28px;
   grid-template-columns: 0.9fr 1.1fr;
-  margin: 72px auto 0;
+  margin: 70px auto 0;
   max-width: 1180px;
   padding-top: 28px;
 }
@@ -278,7 +366,10 @@
     min-height: auto;
   }
 
-  .workflow,
+  .carouselViewport {
+    grid-auto-columns: minmax(250px, 48%);
+  }
+
   .metricList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -298,7 +389,18 @@
     margin-top: 38px;
   }
 
-  .workflow,
+  .heroCopy h1 {
+    font-size: 38px;
+  }
+
+  .featureIntro {
+    align-items: flex-start;
+  }
+
+  .carouselViewport {
+    grid-auto-columns: minmax(248px, 86%);
+  }
+
   .metricList {
     grid-template-columns: 1fr;
   }
