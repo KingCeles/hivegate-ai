@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="HiveGate AI Logo">
+  <path d="M32 5 54 17.7v28.6L32 59 10 46.3V17.7L32 5Z" fill="#fff8e6" stroke="#f4a62a" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M22 47V28c0-6 4-10 10-10s10 4 10 10v19" fill="none" stroke="#121821" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18 47h28" fill="none" stroke="#121821" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18 23c7-8 20-8 28 0" fill="none" stroke="#f4a62a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="18" cy="23" r="2.4" fill="#42a85b" stroke="#ffffff" stroke-width="1.4"/>
+  <circle cx="46" cy="23" r="2.4" fill="#42a85b" stroke="#ffffff" stroke-width="1.4"/>
+  <path d="M35.5 34.5c2.7 0 4.9 1.7 4.9 3.8s-2.2 3.8-4.9 3.8-4.9-1.7-4.9-3.8 2.2-3.8 4.9-3.8Z" fill="#f4a62a" stroke="#121821" stroke-width="1.5"/>
+  <path d="M33.2 34.8c-2.2-2.6-5.3-1.8-5.5.7-.2 2.2 2.7 2.8 5.5-.7Z" fill="#ffffff" stroke="#121821" stroke-width="1.3" opacity=".92"/>
+  <path d="M37.9 34.8c2.2-2.6 5.3-1.8 5.5.7.2 2.2-2.7 2.8-5.5-.7Z" fill="#ffffff" stroke="#121821" stroke-width="1.3" opacity=".92"/>
+  <path d="M34.2 34.9v6.8" fill="none" stroke="#121821" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M37.2 35.1v6.4" fill="none" stroke="#121821" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

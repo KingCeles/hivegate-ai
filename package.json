@@ -1,0 +1,8 @@
+{
+  "name": "bee-repo-runner",
+  "private": true,
+  "scripts": {
+    "dev": ".\\.venv\\Scripts\\python.exe scripts\\dev_runner.py",
+    "check:deploy": ".\\.venv\\Scripts\\python.exe scripts\\check_deploy_ready.py"
+  }
+}

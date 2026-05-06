@@ -1,0 +1,101 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Common variables */
+  --font-body:    'Sora', system-ui, -apple-system, sans-serif;
+  --font-mono:    'DM Mono', monospace;
+  --r:            8px;
+  --transition:   0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme (Default) */
+[data-theme='light'] {
+  --bg:           #f5f5f0;
+  --surface:      #ffffff;
+  --card:         #ffffff;
+  --card-glass:   #ffffff;
+  --border:       #d8d6cc;
+  --border-hi:    #aaa79b;
+  --text:         #11130f;
+  --muted:        #555b50;
+  --amber:        #b46f00;
+  --amber-dim:    rgba(180, 111, 0, 0.10);
+  --amber-glow:   rgba(180, 111, 0, 0.34);
+  --green:        #116b42;
+  --red:          #a92621;
+  --purple:       #6054b8;
+  --blue:         #2c6f8f;
+  --shadow:       0 1px 2px rgba(17, 19, 15, 0.05);
+  --sidebar-bg:   #ededE6;
+}
+
+/* Dark Theme */
+[data-theme='dark'] {
+  --bg:           #0d100d;
+  --surface:      #171c18;
+  --card:         #171c18;
+  --card-glass:   rgba(23, 28, 24, 0.86);
+  --border:       rgba(255, 255, 255, 0.10);
+  --border-hi:    rgba(255, 255, 255, 0.18);
+  --text:         #f2f4ef;
+  --muted:        #a8afa4;
+  --amber:        #e2a33a;
+  --amber-dim:    rgba(226, 163, 58, 0.12);
+  --amber-glow:   rgba(226, 163, 58, 0.32);
+  --green:        #51c878;
+  --red:          #ff6f68;
+  --purple:       #a29bfe;
+  --blue:         #5db6d7;
+  --shadow:       0 14px 44px rgba(0, 0, 0, 0.42);
+  --sidebar-bg:   #101410;
+}
+
+html, body { height: 100%; overflow: hidden; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+#root { height: 100%; }
+
+a { color: var(--amber); text-decoration: none; transition: opacity 0.2s; }
+a:hover { opacity: 0.8; }
+
+input, select, button, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  letter-spacing: 0;
+}
+
+button, select, input, textarea {
+  min-height: 42px;
+}
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--amber-glow);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in  { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.glass    { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }

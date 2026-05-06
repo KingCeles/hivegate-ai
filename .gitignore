@@ -1,0 +1,51 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Node / Vite
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# Backend local state
+backend/instance/
+backend/__pycache__/
+backend/*.log
+backend/*.out.log
+backend/*.err.log
+backend/.env
+
+# Generated datasets, training output, and review artifacts
+backend/dataset/
+backend/debug_frames/
+backend/debug_frames_bc1/
+backend/debug_videos/
+backend/runs/
+backend/yolo_dataset/
+runs/
+labelImg-master/
+
+# Local videos and generated media
+*.mp4
+*.MP4
+*.avi
+*.mov
+*.mkv
+*_first.jpg
+
+# Dev runner and tunnel logs
+*.log
+*.pid
+cloudflared*.out.log
+cloudflared*.err.log
+dev-runner*.out.log
+dev-runner*.err.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

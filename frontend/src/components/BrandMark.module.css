@@ -1,0 +1,58 @@
+.mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--amber);
+}
+
+.hive {
+  fill: color-mix(in srgb, var(--amber) 16%, transparent);
+  stroke: var(--amber);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.gate,
+.gateBase,
+.flightPath,
+.beeStripe {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.gate,
+.gateBase {
+  color: var(--text);
+}
+
+.flightPath {
+  stroke-width: 2.4;
+  opacity: 0.82;
+}
+
+.node {
+  fill: var(--green);
+  stroke: var(--surface);
+  stroke-width: 1.4;
+}
+
+.beeBody {
+  fill: var(--amber);
+  stroke: var(--text);
+  stroke-width: 1.5;
+}
+
+.beeWing {
+  fill: color-mix(in srgb, var(--surface) 74%, white);
+  stroke: var(--text);
+  stroke-width: 1.3;
+  opacity: 0.92;
+}
+
+.beeStripe {
+  stroke: var(--text);
+  stroke-width: 1.2;
+}

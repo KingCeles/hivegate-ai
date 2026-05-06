@@ -1,0 +1,19 @@
+{
+  "name": "HiveGate AI",
+  "short_name": "HiveGate",
+  "description": "Bee identification, entrance counting, live camera tracking, and hive reports.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f0",
+  "theme_color": "#b46f00",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/hivegate-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

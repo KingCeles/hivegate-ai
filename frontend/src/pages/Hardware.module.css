@@ -1,0 +1,381 @@
+.header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 28px; margin-bottom: 40px; position: relative; z-index: 1; }
+.title  { font-size: 38px; line-height: 1.18; font-weight: 900; letter-spacing: 0; color: var(--text); }
+.sub    { font-size: 17px; line-height: 1.7; color: var(--muted); margin-top: 10px; font-weight: 650; max-width: 760px; }
+
+.sectionBlock {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 28px;
+}
+
+.sectionHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.sectionHeading h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.sectionHeading p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 650;
+}
+
+.sectionHeading span {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card-glass);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.hardwareGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.nodeCard {
+  background: var(--card-glass);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.nodeCard:hover {
+  transform: none;
+  border-color: var(--amber-glow);
+}
+
+.nodeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.nodeTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nodeIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--amber-dim);
+  border: 1px solid var(--amber-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--amber);
+}
+
+.nodeName {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0;
+}
+
+.nodeIp {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statusOnline {
+  background: rgba(81, 207, 102, 0.1);
+  color: var(--green);
+  border: 1px solid rgba(81, 207, 102, 0.2);
+}
+
+.statusOffline {
+  background: rgba(214, 48, 49, 0.1);
+  color: var(--red);
+  border: 1px solid rgba(214, 48, 49, 0.2);
+}
+
+.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+}
+.statusOnline .dot { background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
+.statusOffline .dot { background: var(--red); }
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.renameRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.renameInput {
+  min-height: 40px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 800;
+  outline: none;
+}
+
+.renameInput:focus {
+  border-color: rgba(45, 138, 92, 0.5);
+  box-shadow: 0 0 0 3px rgba(45, 138, 92, 0.1);
+}
+
+.saveNameBtn {
+  min-height: 40px;
+  padding: 9px 12px;
+  border: 1px solid rgba(45, 138, 92, 0.26);
+  border-radius: 8px;
+  background: rgba(45, 138, 92, 0.12);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.liveSnapshot,
+.liveSnapshotEmpty {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #050505;
+}
+
+.liveSnapshot {
+  object-fit: contain;
+}
+
+.liveSnapshotEmpty {
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.liveMetrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.liveMetrics div {
+  display: grid;
+  gap: 4px;
+  padding: 12px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.liveMetrics span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.liveMetrics strong {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.emptyLiveNodes,
+.nodeAction {
+  position: relative;
+  z-index: 1;
+  padding: 14px 16px;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  background: var(--card-glass);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nodeAction {
+  margin-top: 12px;
+  border-style: solid;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metricHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metricValue {
+  font-family: var(--font-mono);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.progressBar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--amber);
+  border-radius: 3px;
+  transition: width 0.5s ease-out;
+}
+
+.progressFill.high { background: var(--red); }
+.progressFill.med { background: var(--amber); }
+.progressFill.low { background: var(--green); }
+
+.sensorsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.02);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.sensorItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.sensorName {
+  color: var(--text);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sensorStatus {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sensorStatus.ok { color: var(--green); }
+.sensorStatus.err { color: var(--red); }
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn:hover {
+  background: var(--border);
+  border-color: var(--border-hi);
+}
+
+.btnPrimary {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #000;
+}
+
+.btnPrimary:hover {
+  background: var(--amber-glow);
+  box-shadow: 0 0 12px var(--amber-dim);
+}
+
+@media (max-width: 560px) {
+  .sectionHeading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .renameRow,
+  .liveMetrics {
+    grid-template-columns: 1fr;
+  }
+}
